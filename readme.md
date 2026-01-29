@@ -3,7 +3,7 @@
 **Gemini Web - Generated Image Bulk Downloader**  
 by ThinkWalls Studio
 
-gemini.google.com에서 한 대화에서 생성된 이미지를 다운로드받는데는 꽤 인내심이 요구됩니다. 이 자동화 스크립트로 한 번에 자동으로 다운로드해 보세요!
+gemini.google.com에서 한 대화에서 생성된 이미지를 다운로드받는데는 꽤 인내심이 요구됩니다. 이 자동화 스크립트는 다운로드 버튼 클릭을 대신해, 기다릴 필요 없이 느긋하게 커피를 마실 수 있게 해줍니다. 한 번 사용해 보세요.
 
 ---
 
@@ -23,9 +23,27 @@ Python이 설치되어 있지 않다면, 먼저 Python을 설치해 주세요.
    python --version
    ```
 
-## Selenium 설치
+## 필수 라이브러리 설치
 
-터미널(CMD 또는 PowerShell)에서 아래 명령어를 실행하세요:
+이 프로젝트는 다음 라이브러리를 사용합니다:
+
+### 외부 패키지:
+- **selenium** (버전 4.0.0 이상): 브라우저 자동화
+
+### Python 표준 라이브러리 (자동 포함):
+- os, time, argparse, msvcrt, sys, configparser
+
+### 설치 방법:
+
+#### 방법 1: requirements.txt 사용 (권장)
+
+프로젝트 폴더에서 터미널(CMD 또는 PowerShell)을 열고 실행:
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 방법 2: 직접 설치
 
 ```bash
 pip install selenium
@@ -81,12 +99,12 @@ python autodown.py
 
 - **3번째 이미지부터 다운로드**:
   ```bash
-  python autodown_anti.py -c 3
+  python autodown.py -c 3
   ```
 
 - **2번째부터 5개만 다운로드** (2, 3, 4, 5, 6번째):
   ```bash
-  python autodown_anti.py -c 2 -l 5
+  python autodown.py -c 2 -l 5
   ```
 
 #### 사용 가능한 옵션:
@@ -107,30 +125,21 @@ python autodown.py
 
 ### config.conf 파일 수정:
 
-메모장이나 Visual Studio Code로 `config.conf`를 열어주세요:
-
-```ini
-[options]
-debugging-port=9222
-```
-
-포트 번호를 원하는 값으로 변경하면 됩니다. 예를 들어 9333을 사용하고 싶다면:
+메모장이나 에디터로 `config.conf`를 열어서 포트를 변경합니다.
 
 ```ini
 [options]
 debugging-port=9333
 ```
 
+포트 번호를 원하는 값으로 변경하면 됩니다.
 **중요**: Chrome 실행 시 `--remote-debugging-port` 값도 동일하게 맞춰주세요!
-
 ```powershell
 & "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9333 --user-data-dir="C:\chrometemp"
 ```
 
-### 설정 우선순위:
 1. `config.conf` 파일에 포트가 명시되어 있으면 해당 포트 사용
 2. 파일이 없거나 잘못된 경우 기본값 9222 사용
-
 스크립트 실행 시 "브라우저 연결 성공! 디버그 포트: XXXX" 메시지로 현재 사용 중인 포트를 확인할 수 있습니다.
 
 
@@ -151,23 +160,25 @@ debugging-port=9333
 3. Chrome에서 Gemini 페이지의 파일 다운로드 권한이 차단되어 있는지 확인해 주세요.
 
 ### 다운로드나 동작이 느릴 경우:
-1. **원본 파일 다운로드 명령 시 서버가 다운로드 이미지 전송을 위한 처리를 하는 데에 시간이 걸립니다. 한장에 평균 20초, 빨라도 최소 10초 정도 소요됩니다.**
+1. **원본 파일 다운로드 명령 시 서버가 다운로드 이미지 전송을 위한 처리를 하는 데에 시간이 걸립니다. 1MB 파일은 약 5초, 5MB 파일 기준 한 장에 평균 20초 정도 소요됩니다.**
 2. 웹 페이지 로드가 느린 PC에서는 동작이 전체적으로 느릴 수 있습니다. 가급적 웹 브라우징이 원활한 PC에서 사용하는 것을 권장합니다.
-
 
 ### 제한 사항:
 1. Windows 10/11, Chrome 환경에서 테스트되었습니다. 지원이 종료된 Windows나 최신 버전이 아닌 Chrome에서는 안될 수 있습니다.
-2. 내가 업로드한 이미지, Veo 동영상, 파일, URL 소스 등은 제외됩니다. 오직 이미지 만들기(Nano Banana)로 만들어진 이미지만 체크하여 다운로드가 진행됩니다.
-3. 창을 최소화하고 다른 작업을 해도 되지만, 가급적 열린 chrome 디버그 페이지는 마우스 동작을 하지 않는 것이 좋습니다.
-4. 웹 구현 사항이 달라짐으로 인해 더 이상 동작하지 않을 수 있습니다. 동작이 안되는 것 같다면 문의해 주세요.
+2. 내가 업로드한 이미지, Veo 동영상, 파일, URL 소스 등은 다운로드하지 않습니다. 이미지 만들기를 통해 생성된 이미지만 체크하여 다운로드가 진행됩니다.
+3. 창을 최소화하고 다른 작업을 해도 되지만, 가급적 열린 페이지에는 동작을 하지 않는 것이 좋습니다.
+4. 웹 구현 사항이 달라짐으로 인해 더 이상 동작하지 않을 수 있습니다.
 
 ---
 
 # 라이선스 & 연락처
 
+문의 사항이 있으시면 이슈나 메시지, 이메일을 보내 주세요.
+
 **개발자**: ThinkWalls Studio
+
 **문의**: thinkwalls@naver.com
 
-본 프로젝트는 개인 사용 목적으로 제작되었습니다. 문의 사항이 있으시면 이슈나 메시지, 이메일을 보내 주세요.
+본 프로젝트는 개인 사용 목적으로 제작되었습니다. 
 
 publish date 2026.1.29
