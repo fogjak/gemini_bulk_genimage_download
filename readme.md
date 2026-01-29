@@ -23,17 +23,13 @@ Python이 설치되어 있지 않다면, 먼저 Python을 설치해 주세요.
    python --version
    ```
 
-## 필수 라이브러리 설치
+## 설치 방법
 
-이 프로젝트는 다음 라이브러리를 사용합니다:
-
-### 외부 패키지:
+이 프로젝트는 Python과 다음 라이브러리를 사용합니다:
 - **selenium** (버전 4.0.0 이상): 브라우저 자동화
+- os, time, argparse, msvcrt, sys, configparser : 기본 라이브러리
 
-### Python 표준 라이브러리 (자동 포함):
-- os, time, argparse, msvcrt, sys, configparser
-
-### 설치 방법:
+### 필수 라이브러리 설치
 
 #### 방법 1: requirements.txt 사용 (권장)
 
@@ -172,7 +168,7 @@ debugging-port=9333
 
 **개발자**: ThinkWalls Studio
 
-**문의**: [EMAIL_ADDRESS] 
+**문의**: thinkwalls@naver.com
 
 본 프로젝트는 개인 사용 목적으로 제작되었습니다. 
 
