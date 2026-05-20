@@ -29,23 +29,12 @@ Python이 설치되어 있지 않다면, 먼저 Python을 설치해 주세요.
 - **selenium** (버전 4.0.0 이상): 브라우저 자동화
 - os, time, argparse, msvcrt, sys, configparser : 기본 라이브러리
 
-### 필수 라이브러리 설치
-
-#### 방법 1: requirements.txt 사용 (권장)
+### 필수 라이브러리(selenium) 설치
 
 프로젝트 폴더에서 터미널(CMD 또는 PowerShell)을 열고 실행:
-
-```bash
-pip install -r requirements.txt
-```
-
-#### 방법 2: 직접 설치
-
 ```bash
 pip install selenium
 ```
-
-이게 전부입니다!
 
 # 사용 방법
 
@@ -163,13 +152,18 @@ debugging-port=9333
 ---
 
 # 연락처
-
 문의 사항이 있으시면 이슈나 메시지, 이메일을 보내 주세요.
 
 **개발자**: ThinkWalls Studio
 
 **문의**: thinkwalls@naver.com
 
-본 프로젝트는 개인 사용 목적으로 제작되었습니다. 
+본 프로젝트는 개인 사용 목적으로 제작되었습니다.
 
-publish date 2026.1.29
+# 업데이트
+- 1.0.1 (2026년 5월 20일) : 2026년 5월 19일 이후 변경된 새로운 프론트엔드에 대응합니다.
+- 1.0.0 (2026년 1월 29일) : 최초 릴리즈
+
+# 기타
+published at Jan 29, 2026
+last updated at May 20, 2026
